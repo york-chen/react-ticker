@@ -177,10 +177,12 @@ class TickerElement extends React.Component {
       if (!this.isMoving) return
       if (!this.elementRef.current) return
 
-      const progress = prevTimestamp
+      let progress = prevTimestamp
         ? timestamp - prevTimestamp
         : 0
-
+      if(progress >16.5){
+        progress = 16.5
+      }
       this.x = this.props.direction === 'toLeft'
         ? this.x - (progress / 100 * this.props.speed)
         : this.x + (progress / 100 * this.props.speed)
